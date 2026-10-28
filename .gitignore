@@ -1,0 +1,17 @@
+node_modules
+dist
+dist-ssr
+.env
+.env.*
+!.env.example
+*.local
+*.tsbuildinfo
+playwright-report
+test-results
+blob-report
+coverage
+.vite
+.playwright-mcp
+
+# O enunciado contém credencial. Não versionar.
+Regras.md

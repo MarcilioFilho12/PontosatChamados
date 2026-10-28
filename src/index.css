@@ -1,0 +1,275 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: Outfit, sans-serif;
+  --font-display: Outfit, sans-serif;
+  --font-hero: "Space Grotesk", Outfit, sans-serif;
+  --font-pixel: "Silkscreen", monospace;
+  --color-paper: #f9fafb;
+  --color-ink: #101828;
+  --color-foam: #ffffff;
+  --color-moss: #465fff;
+  --color-clay: #d92d20;
+  --color-mist: #667085;
+  --color-line: #e4e7ec;
+  --color-brand-soft: #ecf3ff;
+  --color-warning-soft: #ffe1e1;
+  --color-warning-ink: #ff1f1f;
+  --color-success-soft: #ecfdf3;
+  --color-success-ink: #027a48;
+  --color-danger-soft: #fef3f2;
+  --shadow-card: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #465fff;
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid #465fff;
+  outline-offset: 2px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.rise {
+  animation: rise 420ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.soft-pulse {
+  animation: soft-pulse 1.4s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+}
+
+.scoreboard {
+  position: relative;
+  isolation: isolate;
+  zoom: 0.624;
+  width: min(153.8%, 115.4rem);
+  margin: 0 auto 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    #080808;
+  background-size: 1rem 1rem;
+  box-shadow:
+    0 1.5rem 5rem rgba(0, 0, 0, 0.45),
+    inset 0 0 3rem rgba(255, 255, 255, 0.025);
+}
+
+.scoreboard-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 1.5rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  font-family: var(--font-pixel);
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.scoreboard-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.live-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 0.4rem #fff,
+    0 0 1rem rgba(255, 255, 255, 0.85);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.live-label {
+  color: #fff;
+  text-shadow:
+    0 0 0.45rem #fff,
+    0 0 1.2rem rgba(255, 255, 255, 0.7);
+}
+
+.ticker-mask {
+  overflow: hidden;
+  padding-block: 0.9rem;
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 24s linear infinite;
+  will-change: transform;
+}
+
+.scoreboard-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.score-card {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: end;
+  width: clamp(15rem, 22vw, 18.5rem);
+  min-height: 7rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.15rem;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.score-label {
+  grid-column: 1 / -1;
+  align-self: start;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.score-value {
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: clamp(1.7rem, 3vw, 2.45rem);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  text-shadow:
+    0 0 0.35rem rgba(255, 255, 255, 0.95),
+    0 0 1.2rem rgba(255, 255, 255, 0.55),
+    0 0 2.2rem rgba(255, 255, 255, 0.25);
+}
+
+.score-detail {
+  justify-self: end;
+  max-width: 8.5rem;
+  padding-bottom: 0.2rem;
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 0.7rem;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.score-retry {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 0.35rem;
+  color: #fff;
+  font-size: 0.7rem;
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.scanline {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(transparent 0%, rgba(255, 255, 255, 0.045) 50%, transparent 100%);
+  transform: translateY(-100%);
+  animation: scan 5s linear infinite;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes scan {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 40rem) {
+  .scoreboard {
+    border-radius: 1.25rem;
+  }
+
+  .scoreboard-topline {
+    padding-inline: 1rem;
+  }
+
+  .ticker-track {
+    animation-duration: 18s;
+  }
+}
+
+dialog {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+dialog::backdrop {
+  background: rgb(16 24 40 / 0.46);
+}
+
+@media (max-width: 639px) {
+  input:not([type='checkbox']):not([type='radio']),
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
