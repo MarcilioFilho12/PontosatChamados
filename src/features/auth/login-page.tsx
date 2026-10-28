@@ -67,10 +67,7 @@ export function LoginPage() {
             }
           })}
         >
-          <div>
-            <h2 className="font-display text-3xl sm:text-4xl">Entrar</h2>
-            <p className="mt-2 text-sm text-mist">A sessão fica neste navegador por 30 minutos.</p>
-          </div>
+          <h2 className="font-display text-3xl sm:text-4xl">Entrar</h2>
           <FormAlert message={formError} />
           <Field label="E-mail" htmlFor="email" error={form.formState.errors.email?.message}>
             <TextInput
